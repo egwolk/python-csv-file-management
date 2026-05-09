@@ -49,3 +49,23 @@ with open("students.csv", "w", newline="") as file:
 #-----------------------------------------------------------------
 
 
+filtered_rows = []
+
+with open("students.csv", "r") as file:
+    '''
+        Reads the csv and stores the records that meet the condition in memory.
+    '''
+    reader = csv.DictReader(file)
+    for row in reader:
+        if int(row['Score']) >= 80:
+            filtered_rows.append(row)
+
+with open("students.csv", "w", newline="") as file:
+    '''
+        overwrites the csv file with the values stored in memory. 
+    '''
+    writer = csv.DictWriter(file, fieldnames=filtered_rows[0].keys())
+    writer.writeheader()
+    writer.writerows(filtered_rows)
+
+
