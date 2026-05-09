@@ -24,3 +24,28 @@ with open("users.csv", "w", newline="") as file:
     writer.writeheader()
     writer.writerow({'id': 1, 'name': 'Anna', 'email': 'anna@gmail.com'})
 #--------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------
+rows = []
+
+with open("students.csv", "r") as file:
+    '''
+        Reads file and adds a value to MEMORY (rows[]) if condition is true
+    '''
+    reader = csv.DictReader(file)
+    for row in reader:
+        if row['Name'] == 'Ana':
+            row['Course'] = 'BSDS'
+        rows.append(row)
+
+with open("students.csv", "w", newline="") as file:
+    '''
+        Writes the values in MEMORY into the CSV file
+    '''
+    writer = csv.DictWriter(file, fieldnames=rows[0].keys())
+    writer.writeheader()
+    writer.writerows(rows)
+#-----------------------------------------------------------------
+
+
