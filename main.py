@@ -1,4 +1,5 @@
 import csv
+import os
 
 #-------------------------------------------------
 with open("output.csv", "w", newline="") as file:
@@ -67,5 +68,9 @@ with open("students.csv", "w", newline="") as file:
     writer = csv.DictWriter(file, fieldnames=filtered_rows[0].keys())
     writer.writeheader()
     writer.writerows(filtered_rows)
+
+
+if os.path.exists("users.csv"):
+    os.remove("users.csv")
 
 
